@@ -7,7 +7,7 @@ export const Layout = () => {
     return (
         <ErrorBoundary FallbackComponent={ErrorPage}>
             <Header />
-            <main>
+            <main className="min-h-1000">
                 <Outlet />
             </main>
         </ErrorBoundary>
