@@ -1,10 +1,11 @@
+import { Layout } from '@/components/layout/layout'
+import { routes } from '@/config/routes'
+import { CataloguePage } from '@/pages/catalogue/catalogue-page'
+import { HomePage } from '@/pages/home/home-page'
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
-import { Layout } from './components/layout/layout'
-import { routes } from './config/routes'
-import { HomePage } from './pages/home-page'
 
-const NotFoundPage = lazy(() => import('./pages/not-found-page'))
+const NotFoundPage = lazy(() => import('@/pages/not-found-page'))
 
 const router = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
                 index: true,
                 element: <HomePage />,
             },
+            {
+                path: routes.catalogue,
+                element: <CataloguePage/>
+            }
         ],
     },
     {
