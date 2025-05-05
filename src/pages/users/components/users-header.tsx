@@ -1,22 +1,22 @@
 import { Loader } from 'lucide-react'
 
-import { Product } from '@/api/products/production-types'
+import { User } from '@/api/users/users-types'
 
-interface CatalogueHeaderProps {
-  products: Product[]
+interface UsersHeaderProps {
+  users: User[]
   isLoading: boolean
 }
 
-export const CatalogueHeader = ({ products, isLoading }: CatalogueHeaderProps) => {
+export const UsersHeader = ({ users, isLoading }: UsersHeaderProps) => {
   return (
     <div>
       <h1 className='flex scroll-m-20 items-center gap-2 text-4xl font-extrabold tracking-tight lg:text-5xl'>
-        Catalogue{' '}
+        Users{' '}
         {isLoading ? (
           <Loader className='size-4 animate-spin' />
         ) : (
           <span className='text-muted-foreground text-xl font-medium'>
-            {products?.length}
+            {users?.length}
           </span>
         )}
       </h1>
