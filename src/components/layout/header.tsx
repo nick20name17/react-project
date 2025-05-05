@@ -1,5 +1,5 @@
 import { Atom } from 'lucide-react'
-import { Link } from 'react-router'
+import { NavLink } from 'react-router'
 
 import { ModeToggle } from '@/components/common/mode-toggle'
 import { Button } from '@/components/ui/button'
@@ -21,8 +21,6 @@ export const Header = () => {
 }
 
 const navItems = Object.entries(routes).map(([key, value]) => {
-  console.log(key, value)
-
   return [key?.charAt(0).toUpperCase() + key.slice(1), value]
 })
 
@@ -32,14 +30,19 @@ const HeaderNav = () => {
       <ul className='flex items-center gap-4'>
         {navItems.map(([key, value]) => (
           <li key={key}>
-            <Link to={value}>
+            <NavLink
+              to={value}
+              className={({ isActive }) => {
+                return isActive ? 'text-primary' : ''
+              }}
+            >
               <Button
                 variant='ghost'
                 size='sm'
               >
                 {key}
               </Button>
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>
