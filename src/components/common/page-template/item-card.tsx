@@ -1,8 +1,4 @@
-import { ShoppingCart } from 'lucide-react'
-
-import { User } from '@/api/users/users-types'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -13,30 +9,34 @@ import {
 } from '@/components/ui/card'
 import { trunc } from '@/utils/text'
 
-interface UserCardProps {
-  user: User
+interface ItemCardProps {
+  badgeText: string
+  img: string
+  title: string
+  description: string
 }
 
-export const UserCard = ({ user }: UserCardProps) => {
+export const ItemCard = ({ badgeText, img, title, description }: ItemCardProps) => {
   return (
     <Card className='relative'>
       <Badge
         variant='secondary'
         className='absolute top-2 right-2 text-base'
       >
-        <span>{user.role}</span>
+        <span>{badgeText}</span>
       </Badge>
       <CardHeader>
         <img
           className='aspect-square rounded-md'
-          src={user.avatar}
-          alt={user.name}
+          src={img}
+          alt={title}
         />
-        <CardTitle className='mt-2 text-lg'>{trunc(user.name, 25)}</CardTitle>
-        <CardDescription>{trunc(user.email, 90)}</CardDescription>
+        <CardTitle className='mt-2 text-lg'>{trunc(title, 25)}</CardTitle>
+        <CardDescription>{trunc(description, 90)}</CardDescription>
       </CardHeader>
       <CardContent></CardContent>
       <CardFooter className='justify-end'></CardFooter>
     </Card>
   )
 }
+
