@@ -1,5 +1,6 @@
 export const routes = {
   home: '/',
   catalogue: '/catalogue',
-  users: '/users'
+  users: '/users',
+  categories: '/categories'
 }
