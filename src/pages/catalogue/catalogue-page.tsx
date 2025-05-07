@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { Heart, ShoppingCart } from 'lucide-react'
+import { useQueryState } from 'nuqs'
 
 import { getProducts } from '@/api/products/products-service'
 import { ItemCard } from '@/components/common/page-template/item-card'
@@ -7,9 +8,16 @@ import { PageTemplate } from '@/components/common/page-template/page-template'
 import { Button } from '@/components/ui/button'
 
 export const CataloguePage = () => {
+  const [search] = useQueryState('search', {
+    defaultValue: ''
+  })
+
   const { data: products, isLoading } = useQuery({
-    queryKey: ['products'],
-    queryFn: getProducts
+    queryKey: ['products', search],
+    queryFn: () =>
+      getProducts({
+        title: search ? search : undefined
+      })
   })
 
   return (

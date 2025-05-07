@@ -1,5 +1,7 @@
 import { Loader } from 'lucide-react'
 
+import { SearchBar } from '../search-bar'
+
 import { PageTemplateProps } from './page-template'
 
 export const TemplateHeader = <T extends { id: number }>({
@@ -8,7 +10,7 @@ export const TemplateHeader = <T extends { id: number }>({
   title
 }: PageTemplateProps<T>) => {
   return (
-    <div>
+    <div className='flex w-full items-center justify-between gap-4'>
       <h1 className='flex scroll-m-20 items-center gap-2 text-4xl font-extrabold tracking-tight lg:text-5xl'>
         <span>{title}</span>
         {isLoading ? (
@@ -19,6 +21,7 @@ export const TemplateHeader = <T extends { id: number }>({
           </span>
         )}
       </h1>
+      <SearchBar className='w-60' />
     </div>
   )
 }

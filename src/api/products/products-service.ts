@@ -1,9 +1,16 @@
 import { api } from '../api'
 
-import { Product, ProductPayload, UpdateProductPayload } from './products-types'
+import {
+  Product,
+  ProductPayload,
+  ProductsQueryParams,
+  UpdateProductPayload
+} from './products-types'
 
-export const getProducts = async () => {
-  const { data } = await api.get<Product[]>('/products')
+export const getProducts = async (params: ProductsQueryParams) => {
+  const { data } = await api.get<Product[]>('/products/', {
+    params
+  })
   return data
 }
 

@@ -8,6 +8,13 @@ export interface Product {
   images: string[]
 }
 
+export interface ProductsQueryParams {
+  title?: string
+  limit?: number
+  offset?: number
+  categoryId?: number
+}
+
 export interface ProductPayload {
   title: string
   price: number

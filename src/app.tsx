@@ -1,3 +1,4 @@
+import { NuqsAdapter } from 'nuqs/adapters/react'
 import { Suspense, lazy } from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router'
 
@@ -44,5 +45,10 @@ const router = createBrowserRouter([
 ])
 
 export const App = () => {
-  return <RouterProvider router={router} />
+  return (
+    <NuqsAdapter>
+      <RouterProvider router={router} />
+    </NuqsAdapter>
+  )
 }
+
