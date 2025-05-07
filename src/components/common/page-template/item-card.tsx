@@ -1,7 +1,10 @@
+import { PropsWithChildren } from 'react'
+
+import { ImageWithFallback } from '../image-with-fallback'
+
 import { Badge } from '@/components/ui/badge'
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -9,14 +12,20 @@ import {
 } from '@/components/ui/card'
 import { trunc } from '@/utils/text'
 
-interface ItemCardProps {
+interface ItemCardProps extends PropsWithChildren {
   badgeText?: string
   img: string
   title: string
   description?: string
 }
 
-export const ItemCard = ({ badgeText, img, title, description }: ItemCardProps) => {
+export const ItemCard = ({
+  badgeText,
+  img,
+  title,
+  description,
+  children
+}: ItemCardProps) => {
   return (
     <Card className='relative'>
       {badgeText ? (
@@ -28,8 +37,8 @@ export const ItemCard = ({ badgeText, img, title, description }: ItemCardProps) 
         </Badge>
       ) : null}
       <CardHeader>
-        <img
-          className='aspect-square rounded-md'
+        <ImageWithFallback
+          className='aspect-square w-full rounded-md'
           src={img}
           alt={title}
         />
@@ -38,8 +47,7 @@ export const ItemCard = ({ badgeText, img, title, description }: ItemCardProps) 
           <CardDescription>{trunc(description, 90)}</CardDescription>
         ) : null}
       </CardHeader>
-      <CardContent></CardContent>
-      <CardFooter className='justify-end'></CardFooter>
+      <CardFooter>{children}</CardFooter>
     </Card>
   )
 }

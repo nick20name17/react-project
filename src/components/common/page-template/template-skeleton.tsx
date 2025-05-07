@@ -7,7 +7,7 @@ export const TemplateSkeleton = () => {
     return (
       <Skeleton
         key={i}
-        className='h-[495px] w-full rounded-xl'
+        className='h-[481px] w-full rounded-xl'
       />
     )
   })
