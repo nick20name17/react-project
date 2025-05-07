@@ -5,6 +5,7 @@ import { UsersPage } from './pages/users/users-page'
 import { Layout } from '@/components/layout/layout'
 import { routes } from '@/config/routes'
 import { CataloguePage } from '@/pages/catalogue/catalogue-page'
+import { CategoriesPage } from '@/pages/categories/categories-page'
 import { HomePage } from '@/pages/home/home-page'
 
 const NotFoundPage = lazy(() => import('@/pages/not-found-page'))
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: routes.users,
         element: <UsersPage />
+      },
+      {
+        path: routes.categories,
+        element: <CategoriesPage />
       }
     ]
   },
