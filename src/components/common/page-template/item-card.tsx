@@ -10,21 +10,23 @@ import {
 import { trunc } from '@/utils/text'
 
 interface ItemCardProps {
-  badgeText: string
+  badgeText?: string
   img: string
   title: string
-  description: string
+  description?: string
 }
 
 export const ItemCard = ({ badgeText, img, title, description }: ItemCardProps) => {
   return (
     <Card className='relative'>
-      <Badge
-        variant='secondary'
-        className='absolute top-2 right-2 text-base'
-      >
-        <span>{badgeText}</span>
-      </Badge>
+      {badgeText ? (
+        <Badge
+          variant='secondary'
+          className='absolute top-2 right-2 text-base'
+        >
+          <span>{badgeText}</span>
+        </Badge>
+      ) : null}
       <CardHeader>
         <img
           className='aspect-square rounded-md'
@@ -32,7 +34,9 @@ export const ItemCard = ({ badgeText, img, title, description }: ItemCardProps) 
           alt={title}
         />
         <CardTitle className='mt-2 text-lg'>{trunc(title, 25)}</CardTitle>
-        <CardDescription>{trunc(description, 90)}</CardDescription>
+        {description ? (
+          <CardDescription>{trunc(description, 90)}</CardDescription>
+        ) : null}
       </CardHeader>
       <CardContent></CardContent>
       <CardFooter className='justify-end'></CardFooter>

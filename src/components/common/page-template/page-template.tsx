@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react'
 
 import { TemplateHeader } from './template-header'
+import { TemplateSkeleton } from './template-skeleton'
 
 export interface PageTemplateProps<T extends { id: number }>
   extends PropsWithChildren {
@@ -22,8 +23,9 @@ export const PageTemplate = <T extends { id: number }>({
         data={data || []}
         isLoading={isLoading}
       />
-
-      {isLoading ? '...' : children}
+      <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+        {isLoading ? <TemplateSkeleton /> : children}
+      </div>
     </section>
   )
 }

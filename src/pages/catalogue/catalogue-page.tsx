@@ -16,17 +16,15 @@ export const CataloguePage = () => {
       isLoading={isLoading}
       title='Products'
     >
-      <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-        {products?.map((item) => (
-          <ItemCard
-            key={item.id}
-            badgeText={item.price?.toString() + '$'}
-            description={item.description}
-            img={item.images[0]}
-            title={item.title}
-          />
-        ))}
-      </div>
+      {products?.map((item) => (
+        <ItemCard
+          key={item.id}
+          badgeText={item.price?.toString() + '$'}
+          description={item.description}
+          img={item.images[0]}
+          title={item.title}
+        />
+      ))}
     </PageTemplate>
   )
 }

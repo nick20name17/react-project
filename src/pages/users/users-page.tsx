@@ -16,17 +16,15 @@ export const UsersPage = () => {
       isLoading={isLoading}
       title='Users'
     >
-      <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-        {users?.map((item) => (
-          <ItemCard
-            key={item.id}
-            badgeText={item.role}
-            description={item.email}
-            img={item.avatar}
-            title={item.name}
-          />
-        ))}
-      </div>
+      {users?.map((item) => (
+        <ItemCard
+          key={item.id}
+          badgeText={item.role}
+          description={item.email}
+          img={item.avatar}
+          title={item.name}
+        />
+      ))}
     </PageTemplate>
   )
 }
