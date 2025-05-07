@@ -4,3 +4,4 @@ export const routes = {
   users: '/users',
   categories: '/categories'
 }
+

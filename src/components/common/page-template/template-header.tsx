@@ -1,25 +1,28 @@
 import { Loader } from 'lucide-react'
 
-import { Product } from '@/api/products/production-types'
+import { SearchBar } from '../search-bar'
 
-interface CatalogueHeaderProps {
-  products: Product[]
-  isLoading: boolean
-}
+import { PageTemplateProps } from './page-template'
 
-export const CatalogueHeader = ({ products, isLoading }: CatalogueHeaderProps) => {
+export const TemplateHeader = <T extends { id: number }>({
+  data,
+  isLoading,
+  title
+}: PageTemplateProps<T>) => {
   return (
-    <div>
+    <div className='flex w-full items-center justify-between gap-4'>
       <h1 className='flex scroll-m-20 items-center gap-2 text-4xl font-extrabold tracking-tight lg:text-5xl'>
-        Catalogue{' '}
+        <span>{title}</span>
         {isLoading ? (
           <Loader className='size-4 animate-spin' />
         ) : (
           <span className='text-muted-foreground text-xl font-medium'>
-            {products?.length}
+            {data?.length}
           </span>
         )}
       </h1>
+      <SearchBar className='w-60' />
     </div>
   )
 }
+
