@@ -7,7 +7,8 @@ import { PageTemplateProps } from './page-template'
 export const TemplateHeader = <T extends { id: number }>({
   data,
   isLoading,
-  title
+  title,
+  headerActions
 }: PageTemplateProps<T>) => {
   return (
     <div className='flex w-full items-center justify-between gap-4'>
@@ -21,7 +22,10 @@ export const TemplateHeader = <T extends { id: number }>({
           </span>
         )}
       </h1>
-      <SearchBar className='w-60' />
+      <div className='flex items-center gap-4'>
+        {headerActions}
+        <SearchBar className='w-60' />
+      </div>
     </div>
   )
 }

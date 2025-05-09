@@ -2,12 +2,12 @@ import { NuqsAdapter } from 'nuqs/adapters/react'
 import { Suspense, lazy } from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router'
 
-import { UsersPage } from './pages/users/users-page'
 import { Layout } from '@/components/layout/layout'
 import { routes } from '@/config/routes'
 import { CataloguePage } from '@/pages/catalogue/catalogue-page'
 import { CategoriesPage } from '@/pages/categories/categories-page'
 import { HomePage } from '@/pages/home/home-page'
+import { UsersPage } from '@/pages/users/users-page'
 
 const NotFoundPage = lazy(() => import('@/pages/not-found-page'))
 
