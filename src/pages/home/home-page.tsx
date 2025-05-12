@@ -1,8 +1,18 @@
+import { Cta } from './components/cta'
+import { Features } from './components/features'
+import { Feedback } from './components/feedback'
+import { Hero } from './components/hero'
+import { Showcase } from './components/showcase'
+
 export const HomePage = () => {
-    return (
-        <section>
-            <h1>Home Page</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, nihil.</p>
-        </section>
-    )
+  return (
+    <>
+      <Hero />
+      <Showcase />
+      <Features />
+      <Feedback />
+      <Cta />
+    </>
+  )
 }
+
