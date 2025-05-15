@@ -7,7 +7,7 @@ import { routes } from '@/config/routes'
 
 export const Header = () => {
   return (
-    <header className='bg-background/55 sticky top-4 z-10 mx-auto flex h-14 max-w-3xl items-center justify-between rounded-full border bg-clip-padding px-4 backdrop-blur-md backdrop-filter'>
+    <header className='bg-background/55 sticky top-4 z-10 mx-auto flex h-[var(--header-height)] max-w-3xl items-center justify-between rounded-full border bg-clip-padding px-4 backdrop-blur-md backdrop-filter'>
       <Button
         size='icon'
         className='rounded-full'

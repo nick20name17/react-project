@@ -2,6 +2,7 @@ import { NuqsAdapter } from 'nuqs/adapters/react'
 import { Suspense, lazy } from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router'
 
+import { LoginPage } from './pages/login/login-page'
 import { Layout } from '@/components/layout/layout'
 import { routes } from '@/config/routes'
 import { CataloguePage } from '@/pages/catalogue/catalogue-page'
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: routes.categories,
         element: <CategoriesPage />
+      },
+      {
+        path: routes.login,
+        element: <LoginPage />
       }
     ]
   },
