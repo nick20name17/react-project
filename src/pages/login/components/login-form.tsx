@@ -27,6 +27,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { routes } from '@/config/routes'
+import { useAuth } from '@/providers/auth-provider'
 
 const loginSchema = z.object({
   email: z.string().email().min(1, { message: 'Email is required' }),
@@ -42,13 +43,19 @@ export const LoginForm = () => {
     resolver: zodResolver(loginSchema)
   })
 
+  const { setIsAuth } = useAuth()
+
   const navigate = useNavigate()
 
   const loginMutation = useMutation({
     mutationFn: login,
-    onSuccess: () => {
+    onSuccess: (data) => {
       navigate(routes.catalogue)
       toast.success('Login Successfuly!')
+      setIsAuth(true)
+
+      localStorage.setItem('accessToken', data.access_token)
+      localStorage.setItem('refreshToken', data.refresh_token)
     },
     onError: (error) => {
       toast.error(error.message)
