@@ -1,21 +1,36 @@
-import { Atom } from 'lucide-react'
-import { NavLink } from 'react-router'
+import { Atom, LogOut } from 'lucide-react'
+import { Link, NavLink } from 'react-router'
 
 import { ModeToggle } from '@/components/common/mode-toggle'
 import { Button } from '@/components/ui/button'
 import { routes } from '@/config/routes'
+import { useAuth } from '@/providers/auth-provider'
 
 export const Header = () => {
+  const { isAuth, logout } = useAuth()
+
   return (
-    <header className='bg-background/55 sticky top-4 z-10 mx-auto flex h-14 max-w-3xl items-center justify-between rounded-full border bg-clip-padding px-4 backdrop-blur-md backdrop-filter'>
-      <Button
-        size='icon'
-        className='rounded-full'
-      >
-        <Atom />
-      </Button>
+    <header className='bg-background/55 sticky top-4 z-10 mx-auto flex h-[var(--header-height)] max-w-3xl items-center justify-between rounded-full border bg-clip-padding px-4 backdrop-blur-md backdrop-filter'>
+      <Link to={routes.home}>
+        <Button
+          size='icon'
+          className='rounded-full'
+        >
+          <Atom />
+        </Button>
+      </Link>
       <HeaderNav />
       <ModeToggle />
+      {isAuth && (
+        <Button
+          className='rounded-full'
+          variant='ghost'
+          size='icon'
+          onClick={logout}
+        >
+          <LogOut />
+        </Button>
+      )}
     </header>
   )
 }
@@ -25,26 +40,33 @@ const navItems = Object.entries(routes).map(([key, value]) => {
 })
 
 const HeaderNav = () => {
+  const { isAuth } = useAuth()
+
   return (
     <nav>
       <ul className='flex items-center gap-4'>
-        {navItems.map(([key, value]) => (
-          <li key={key}>
-            <NavLink
-              to={value}
-              className={({ isActive }) => {
-                return isActive ? 'text-primary' : ''
-              }}
-            >
-              <Button
-                variant='ghost'
-                size='sm'
+        {navItems.map(([key, value]) => {
+          if (isAuth && value === routes.login) return
+
+          if (!isAuth && value === routes.categories) return
+          return (
+            <li key={key}>
+              <NavLink
+                to={value}
+                className={({ isActive }) => {
+                  return isActive ? 'text-primary' : ''
+                }}
               >
-                {key}
-              </Button>
-            </NavLink>
-          </li>
-        ))}
+                <Button
+                  variant='ghost'
+                  size='sm'
+                >
+                  {key}
+                </Button>
+              </NavLink>
+            </li>
+          )
+        })}
       </ul>
     </nav>
   )
