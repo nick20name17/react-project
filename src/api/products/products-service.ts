@@ -29,7 +29,7 @@ export const updateProduct = async (id: number, payload: UpdateProductPayload) =
   return data
 }
 
-export const deleteProduct = async (id: number) => {
+export const removeProduct = async (id: number) => {
   const { data } = await api.delete(`/products/${id}`)
   return data
 }

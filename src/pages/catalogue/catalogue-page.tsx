@@ -3,6 +3,7 @@ import { Heart, ShoppingCart } from 'lucide-react'
 import { useQueryState } from 'nuqs'
 
 import { CreateProduct } from './components/actions/create-product'
+import { RemoveProduct } from './components/actions/remove-product'
 import { CategoryFilter } from './components/category-filter'
 import { getProducts } from '@/api/products/products-service'
 import { ItemCard } from '@/components/common/page-template/item-card'
@@ -75,6 +76,7 @@ export const CataloguePage = () => {
               <Button size='icon'>
                 <ShoppingCart />
               </Button>
+              {isAuth ? <RemoveProduct product={item} /> : null}
             </div>
           </div>
         </ItemCard>
