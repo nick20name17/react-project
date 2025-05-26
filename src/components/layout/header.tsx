@@ -10,7 +10,7 @@ export const Header = () => {
   const { isAuth, logout } = useAuth()
 
   return (
-    <header className='bg-background/55 sticky top-4 z-10 mx-auto flex h-[var(--header-height)] max-w-3xl items-center justify-between rounded-full border bg-clip-padding px-4 backdrop-blur-md backdrop-filter'>
+    <header className='bg-background/55 sticky top-4 z-10 mx-auto flex h-[var(--header-height)] w-full max-w-3xl items-center justify-between rounded-full border bg-clip-padding px-4 backdrop-blur-md backdrop-filter'>
       <Link to={routes.home}>
         <Button
           size='icon'

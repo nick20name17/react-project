@@ -2,12 +2,14 @@ import { useQuery } from '@tanstack/react-query'
 import { Heart, ShoppingCart } from 'lucide-react'
 import { useQueryState } from 'nuqs'
 
+import { CreateProduct } from './components/actions/create-product'
 import { CategoryFilter } from './components/category-filter'
 import { getProducts } from '@/api/products/products-service'
 import { ItemCard } from '@/components/common/page-template/item-card'
 import { PageTemplate } from '@/components/common/page-template/page-template'
 import { Button } from '@/components/ui/button'
 import { DEFAULT_LIMIT } from '@/config/api'
+import { useAuth } from '@/providers/auth-provider'
 
 export const CataloguePage = () => {
   const [search] = useQueryState('search', {
@@ -39,11 +41,18 @@ export const CataloguePage = () => {
       })
   })
 
+  const { isAuth } = useAuth()
+
   return (
     <PageTemplate
       data={products || []}
       isLoading={isLoading}
-      headerActions={<CategoryFilter />}
+      headerActions={
+        <div className='flex items-center gap-4'>
+          {isAuth ? <CreateProduct /> : null}
+          <CategoryFilter />
+        </div>
+      }
       title='Products'
       count={51}
     >

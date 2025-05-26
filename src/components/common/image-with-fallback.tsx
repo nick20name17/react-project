@@ -1,38 +1,50 @@
-import { useEffect, useState } from 'react'
+import { Image } from 'lucide-react'
+import { useState } from 'react'
 
-interface ImageWithFallbackProps extends React.ComponentProps<'img'> {
-  fallback?: string
+import { Skeleton } from '../ui/skeleton'
+
+import { cn } from '@/lib/utils'
+
+interface ImageWithSkeletonProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  className?: string
 }
 
-const FALL_BACK_IMAGE = '/fallback.webp'
+export const ImageWithFallback = (props: ImageWithSkeletonProps) => {
+  const [isLoading, setIsLoading] = useState(true)
+  const [hasError, setHasError] = useState(false)
 
-export const ImageWithFallback = ({
-  fallback = FALL_BACK_IMAGE,
-  src,
-  ...props
-}: ImageWithFallbackProps) => {
-  const [error, setError] = useState<React.SyntheticEvent<
-    HTMLImageElement,
-    Event
-  > | null>(null)
+  const handleImageLoad = () => {
+    setIsLoading(false)
+  }
 
-  useEffect(() => {
-    setError(null)
-  }, [src])
+  const handleImageError = () => {
+    setIsLoading(false)
+    setHasError(true)
+  }
 
-  //   const [isLoading, setIsLoading] = useState(true)
-  //   const handleImageLoad = () => {
-  //     setIsLoading(false)
-  //   }
-
-  //   if (isLoading) return <Skeleton className={cn('h-full w-full', props.className)} />
+  if (hasError || !props.src)
+    return (
+      <div
+        className={cn(
+          'flex flex-col items-center justify-center gap-2',
+          props.className
+        )}
+      >
+        <Image className='text-grey-300 size-8' />
+        <span className='text-grey-500 text-xs'>Image Not Found</span>
+      </div>
+    )
 
   return (
-    <img
-      onError={setError}
-      src={error ? fallback : src}
-      {...props}
-    />
+    <>
+      {isLoading && <Skeleton className={props.className} />}
+      <img
+        {...props}
+        className={cn(props.className, isLoading || hasError ? 'hidden' : '')}
+        onLoad={handleImageLoad}
+        onError={handleImageError}
+      />
+    </>
   )
 }
 

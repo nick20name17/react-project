@@ -38,7 +38,7 @@ export const ItemCard = ({
       ) : null}
       <CardHeader>
         <ImageWithFallback
-          className='aspect-square w-full rounded-md'
+          className='aspect-square w-full rounded-md object-cover'
           src={img}
           alt={title}
         />
