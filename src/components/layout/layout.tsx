@@ -10,7 +10,7 @@ export const Layout = () => {
   return (
     <ErrorBoundary FallbackComponent={ErrorPage}>
       <Header />
-      <main className='mt-[var(--layout-y-offset)]'>
+      <main className='mt-[var(--layout-y-offset)] flex-1'>
         <Outlet />
       </main>
       <Footer />

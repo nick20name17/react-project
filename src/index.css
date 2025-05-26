@@ -131,5 +131,9 @@
   section {
     @apply scroll-mt-20;
   }
+
+  #root {
+    @apply flex min-h-screen flex-col justify-between;
+  }
 }
 
