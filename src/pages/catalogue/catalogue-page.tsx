@@ -4,6 +4,7 @@ import { useQueryState } from 'nuqs'
 
 import { CreateProduct } from './components/actions/create-product'
 import { RemoveProduct } from './components/actions/remove-product'
+import { UpdateProduct } from './components/actions/update-product'
 import { CategoryFilter } from './components/category-filter'
 import { getProducts } from '@/api/products/products-service'
 import { ItemCard } from '@/components/common/page-template/item-card'
@@ -76,6 +77,7 @@ export const CataloguePage = () => {
               <Button size='icon'>
                 <ShoppingCart />
               </Button>
+              {isAuth ? <UpdateProduct product={item} /> : null}
               {isAuth ? <RemoveProduct product={item} /> : null}
             </div>
           </div>
