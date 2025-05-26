@@ -1,5 +1,7 @@
-import { Atom, LogOut } from 'lucide-react'
+import { Atom } from 'lucide-react'
 import { Link, NavLink } from 'react-router'
+
+import { ProfileDropdown } from '../common/profile-dropdown'
 
 import { ModeToggle } from '@/components/common/mode-toggle'
 import { Button } from '@/components/ui/button'
@@ -7,7 +9,7 @@ import { routes } from '@/config/routes'
 import { useAuth } from '@/providers/auth-provider'
 
 export const Header = () => {
-  const { isAuth, logout } = useAuth()
+  const { isAuth } = useAuth()
 
   return (
     <header className='bg-background/55 sticky top-4 z-10 mx-auto flex h-[var(--header-height)] w-full max-w-3xl items-center justify-between rounded-full border bg-clip-padding px-4 backdrop-blur-md backdrop-filter'>
@@ -20,17 +22,7 @@ export const Header = () => {
         </Button>
       </Link>
       <HeaderNav />
-      <ModeToggle />
-      {isAuth && (
-        <Button
-          className='rounded-full'
-          variant='ghost'
-          size='icon'
-          onClick={logout}
-        >
-          <LogOut />
-        </Button>
-      )}
+      {isAuth ? <ProfileDropdown /> : <ModeToggle />}
     </header>
   )
 }
